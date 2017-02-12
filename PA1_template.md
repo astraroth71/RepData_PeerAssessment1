@@ -184,6 +184,7 @@ create_hist(dt_missing_summary$new_steps, title = "Total Step per day with NA re
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-9-2.png)<!-- -->
+
 We can see that after replacing the NA value with the mean per interval, the total mean value get closer to the median value.
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -195,11 +196,13 @@ weekpart <- function(d){
         return(part)
 }
 ```
+
 Then I apply the function to the dataset adding a new column with the corresponding value
 
 ```r
 dt_missing$daytype = as.factor(sapply(as.Date(dt_missing$date), FUN=weekpart))
 ```
+
 Finally summarize the dataset and print the graph
 
 ```r
