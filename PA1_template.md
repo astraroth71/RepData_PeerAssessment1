@@ -84,15 +84,15 @@ To calculate the mean total number of steps per day I create a dataframe with th
 # Convert csv in data table and Take the total amount of steps per day
 dt <- data.table(activity)
 dt_sum <- dt[, list(totalSteps = sum(steps, na.rm = TRUE)), by = date]
-paste('Mean: ', mean(dt_sum$totalSteps))
+paste('Mean: ', round(mean(dt_sum$totalSteps),1))
 ```
 
 ```
-## [1] "Mean:  9354.22950819672"
+## [1] "Mean:  9354.2"
 ```
 
 ```r
-paste('Median: ', median(dt_sum$totalSteps))
+paste('Median: ', round(median(dt_sum$totalSteps),1))
 ```
 
 ```
@@ -157,6 +157,19 @@ dt_missing$new_steps <- mapply(fillValues, dt_missing$steps, dt_missing$avg_step
 
 # calculate the sum of steps per day
 dt_missing_summary <- dt_missing[, list(new_steps = sum(new_steps, na.rm = TRUE)), by = date]
+paste('Mean: ', round(mean(dt_missing_summary$new_steps),1))
+```
+
+```
+## [1] "Mean:  10766.2"
+```
+
+```r
+paste('Median: ', round(median(dt_missing_summary$new_steps),1))
+```
+
+```
+## [1] "Median:  10766.2"
 ```
 - Finally I plot the results
 

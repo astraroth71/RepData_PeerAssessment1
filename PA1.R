@@ -41,8 +41,8 @@ head(activity)
 # Convert csv in data table and Take the total amount of steps per day
 dt <- data.table(activity)
 dt_sum <- dt[, list(totalSteps = sum(steps, na.rm = TRUE)), by = date]
-paste('Mean: ', mean(dt_sum$totalSteps))
-paste('Median: ', median(dt_sum$totalSteps))
+paste('Mean: ', round(mean(dt_sum$totalSteps),1))
+paste('Median: ', round(median(dt_sum$totalSteps),1))
 # plot the histogram
 png("plots/plot1.png")
 create_hist(dt_sum$totalSteps, title = "Total Steps per Day")
@@ -89,6 +89,8 @@ dt_missing$new_steps <- mapply(fillValues, dt_missing$steps, dt_missing$avg_step
 
 # calculate the sum of steps per day
 dt_missing_summary <- dt_missing[, list(new_steps = sum(new_steps, na.rm = TRUE)), by = date]
+paste('Mean: ', round(mean(dt_missing_summary$new_steps),1))
+paste('Median: ', round(median(dt_missing_summary$new_steps),1))
 # head(dt_missing_summary, 30)
 # plot the new histogram with the NA value replaced
 png("plots/plot3.png")

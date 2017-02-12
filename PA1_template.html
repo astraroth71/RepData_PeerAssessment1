@@ -180,9 +180,9 @@ names(activity)</code></pre>
 <pre class="r"><code># Convert csv in data table and Take the total amount of steps per day
 dt &lt;- data.table(activity)
 dt_sum &lt;- dt[, list(totalSteps = sum(steps, na.rm = TRUE)), by = date]
-paste('Mean: ', mean(dt_sum$totalSteps))</code></pre>
-<pre><code>## [1] &quot;Mean:  9354.22950819672&quot;</code></pre>
-<pre class="r"><code>paste('Median: ', median(dt_sum$totalSteps))</code></pre>
+paste('Mean: ', round(mean(dt_sum$totalSteps),1))</code></pre>
+<pre><code>## [1] &quot;Mean:  9354.2&quot;</code></pre>
+<pre class="r"><code>paste('Median: ', round(median(dt_sum$totalSteps),1))</code></pre>
 <pre><code>## [1] &quot;Median:  10395&quot;</code></pre>
 </div>
 <div id="what-is-the-average-daily-activity-pattern" class="section level2">
@@ -231,7 +231,11 @@ dt_missing &lt;- dt[dt_by_interval]</code></pre>
 dt_missing$new_steps &lt;- mapply(fillValues, dt_missing$steps, dt_missing$avg_steps)
 
 # calculate the sum of steps per day
-dt_missing_summary &lt;- dt_missing[, list(new_steps = sum(new_steps, na.rm = TRUE)), by = date]</code></pre>
+dt_missing_summary &lt;- dt_missing[, list(new_steps = sum(new_steps, na.rm = TRUE)), by = date]
+paste('Mean: ', round(mean(dt_missing_summary$new_steps),1))</code></pre>
+<pre><code>## [1] &quot;Mean:  10766.2&quot;</code></pre>
+<pre class="r"><code>paste('Median: ', round(median(dt_missing_summary$new_steps),1))</code></pre>
+<pre><code>## [1] &quot;Median:  10766.2&quot;</code></pre>
 <ul>
 <li>Finally I plot the results</li>
 </ul>
